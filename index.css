@@ -1,0 +1,16 @@
+body {
+    background-color: lightsteelblue;
+    font-family: 'Orbitron', sans-serif;
+    color: rgb(9, 9, 95);
+}
+
+
+#title {
+    font-size: 70px;
+    text-align: center;
+}
+
+#subtitle {
+    font-size: 40px;
+    text-align: center;
+}
