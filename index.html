@@ -11,98 +11,152 @@
 
 </head>
 
-<body>
-  <h1 id="title">
+<body class = "container">
+  <div id="header">
+    <h1 id="title">
     Rock, Paper, Scissors!
   </h1>
   <p id="subtitle">Do you have what it takes to top the RPS-Bot 2000?</p>
-  <div id="main">
-      <img src="https://mygaming.co.za/news/wp-content/uploads/2016/08/Robot.jpg" alt="The RPS Bot shredding">
   </div>
-  <script>
-      let playerScore = 0;
-      let computerScore = 0;
-      let playerMove;
-      let computerMove;
+ 
+  
+  <div id=button-rock>
+    <img class="image" src="rock image.jpg" alt="Pete Townshend and the Who provide the rock">
+    <button id="rock">Rock</button>
+  </div>
+  <div class="image" id="button-paper" alt="Piles and piles of money. It's all about the paper.">
+    <img src="paper image.jpeg">
+    <button id="paper">Paper</button>
+  </div>
+  <div id="button-scissors">
+    <img  class="image" src="rea scissors.jpg" alt="In the squared circle, a female wrestler traps her male opponent in the grasp of a tenacious scissors hold.">
+    <button id="scissors">Scissors</button>
+  </div>
+   
+  <div id="footer">
+    <div id = "results">
+    </div>
+    <div id="button-reset"></div>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
 
-      function computerPlay() {
-          const rockPaperScissors = [`rock`, `paper`, `scissors`];
-          const randomChoice = rockPaperScissors[Math.floor(Math.random() * rockPaperScissors.length)];
-          return randomChoice;
-      }
+  <script> 
+const rock = document.querySelector("#rock");
+const paper = document.querySelector(`#paper`);
+const scissors = document.querySelector(`#scissors`);
+const newGame = document.querySelector(`#reset`);
+const results = document.querySelector(`#results`);
 
-      function playRound(playerSelection, computerSelection) {
+let playerScore = 0;
+let computerScore = 0;
+let tieScore = 0;
+let playerMove;
+let computerMove;
+let resultMessage = " ";
 
-          switch (result) {
-          
-          case playerSelection == `paper` && computerSelection == `rock`:
-              playerScore = playerScore + 1;
-              console.log(`You win! Paper beats rock! The score is Human: ${playerScore} Computer: ${computerScore}!`);
-              break;
-
-          case playerSelection == `scissors` && computerSelection == `rock`:
-              computerScore = computerScore + 1;
-              console.log(`You lose! Rock beats scissors! The score is Human: ${playerScore} Computer: ${computerScore}!`);
-              break;
-
-          case playerSelection == `paper` && computerSelection == `scissors`:
-              computerScore = computerScore + 1;
-              console.log(`You lose! Scissors beats paper! The score is Human: ${playerScore} Computer: ${computerScore}!`);
-              break;
-
-           case playerSelection == `rock` && computerSelection == `scissors`:
-              playerScore = playerScore + 1;
-              console.log(`You win! Rock beats scissors! The score is Human: ${playerScore} Computer: ${computerScore}!`);
-              break;
-
-          case playerSelection == `rock` && computerSelection == `paper`:
-              computerScore = computerScore + 1;
-              console.log(`You lose! Paper beats rock! The Score is Human: ${playerScore} Computer: ${computerScore}!`);
-              break;
-
-          case playerSelection == `scissors` && computerSelection == `paper`:
-              playerScore = playerScore + 1;
-              console.log(`You win! Scissors beats paper! The score is Human: ${playerScore} Computer: ${computerScore}!`);
-              break;
-
-           case playerSelection == `paper` && computerSelection == `paper`:
-              console.log(`It's a tie--paper vs. paper! The score remains Human: ${playerScore} Computer: ${computerScore}!`);
-              break;
-
-          case playerSelection == `rock` && computerSelection == `rock`:
-              console.log(`It's a tie--rock vs. rock! It's still Human: ${playerScore} Computer: ${computerScore}!`);
-              break;
-
-          case playerSelection == `scissors` && computerSelection == `scissors`:
-              console.log(`It's a tie--scissors vs. scissors! The score is still Human: ${playerScore} Computer: ${computerScore}!`);
-              break;
-
-          case playerSelection !== `scissors` || `paper` || `rock`:
-              console.log(`Not a valid input. This doesn't bode well for your chances with the RPS Bot!!!`);
-              break;
-          }
-      }
-
-      function game() {
-
-          for (var i = 0; i < 5; i++) {
-              computerMove = computerPlay();
-              playerMove = prompt(`What'll it be? Rock, paper, or scissors?`).toLowerCase();
-              playRound(playerMove, computerMove);
-          }
-
-          if (playerScore > computerScore) {
-              console.log(`You have won!`);
-          }
-          else if (playerScore < computerScore) {
-              console.log(`You have lost!`);
-          }
-          else if (playerScore == computerScore) {
-              console.log(`A tie!`);
-          }
-      }
+results.textContent = `Human: ${playerScore}. Computer: ${computerScore}. Ties: ${tieScore}. ${resultMessage}`;
 
 
+function computerPlay() {
+    const rockPaperScissors = [`rock`, `paper`, `scissors`];
+    const randomChoice = rockPaperScissors[Math.floor(Math.random() * rockPaperScissors.length)];
+    return randomChoice;
+}
+
+function playRound(playerSelection, computerSelection) {
+    
+    if (playerSelection == `paper` && computerSelection == `rock`) {
+        playerScore = playerScore + 1;
+        resultMessage = `You win! Paper beats rock!`;
+    }
+
+    else if (playerSelection == `scissors` && computerSelection == `rock`) {
+        computerScore = computerScore + 1;
+        resultMessage = `You lose! Rock beats scissors!`;
+    }
+
+    else if (playerSelection == `paper` && computerSelection == `scissors`) {
+        computerScore = computerScore + 1;
+        resultMessage = `You lose! Scissors beats paper!`;
+    }
+
+     else if (playerSelection == `rock` && computerSelection == `scissors`) {
+        playerScore = playerScore + 1;
+        resultMessage = `You win! Rock beats scissors!`;
+     }
+
+    else if (playerSelection == `rock` && computerSelection == `paper`) {
+        computerScore = computerScore + 1;
+        resultMessage = `You lose! Paper beats rock!`;
+    }
+
+    else if (playerSelection == `scissors` && computerSelection == `paper`) {
+        playerScore = playerScore + 1;
+        resultMessage = `You win! Scissors beats paper!`;
+    }
+
+     else if (playerSelection == `paper` && computerSelection == `paper`) {
+        tieScore = tieScore + 1;
+        resultMessage = `It's a tie--paper vs. paper!`;
+     }
+
+    else if (playerSelection == `rock` && computerSelection == `rock`) {
+        tieScore = tieScore + 1;
+        resultMessage = `It's a tie--rock vs. rock!`;
+    }
+
+    else if (playerSelection == `scissors` && computerSelection == `scissors`) {
+        tieScore = tieScore + 1;
+        resultMessage = `It's a tie--scissors vs. scissors!`;
+    }
+    results.textContent = ` ${resultMessage} \n Human: ${playerScore}. Computer: ${computerScore}. Ties: ${tieScore}.`;
+}
+
+ let declareWinner = function() {
+     if (playerScore > 4) {
+        resultMessage = `You win by the score of ${playerScore} to ${computerScore}! \n Try me again! I'll kick your ass this time, bud!`;
+        results.textContent = resultMessage;
+        playerScore = 0;
+        computerScore = 0;
+        tieScore = 0;
+     } else if (computerScore > 4) {
+         resultMessage = `You lose by the score of ${computerScore} to ${playerScore}! \n Hahahahah!! Want to play again, or are you going to take your rocks and go home?`;
+         results.textContent = resultMessage;
+         playerScore = 0;
+         computerScore = 0;
+         tieScore = 0;
+     } else {
+        results.textContent = `${resultMessage} \n Human: ${playerScore}. Computer: ${computerScore}. Ties: ${tieScore}.`;
+     }
+ }
+
+ let reset = function() {
+     playerScore = 0;
+     computerScore = 0;
+     tieScore = 0;
+     resultMessage = `Let's play!`;
+     results.textContent = `Human: ${playerScore}. Computer: ${computerScore}. Ties: ${tieScore}. ${resultMessage}`;
+ }
+
+
+rock.addEventListener('click', () => {
+    playRound(`rock`, computerPlay());
+    declareWinner();
+});
+
+paper.addEventListener('click', () => {
+    playRound(`paper`, computerPlay());
+    declareWinner();
+});
+
+scissors.addEventListener('click', () => {
+    playRound(`scissors`, computerPlay());
+    declareWinner();
+});
+newGame.addEventListener('click', () => {
+    reset();
+});
   </script>
 </body>
 </html>
