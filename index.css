@@ -4,6 +4,13 @@ body {
     color: rgb(9, 9, 95);
 }
 
+button {
+font-weight: bold;
+width: 80px;
+height: 30px;
+
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -16,6 +23,7 @@ body {
     width: 300px;
     align-self: center;
     border-color: mediumblue;
+    border-style: solid;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -29,15 +37,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 5px red;
-    margin: 0;    
+    margin-bottom: -20;
+    margin-top: -10;    
 }
-
 
 #title {
     font-size: 40px;
     padding-bottom: 0;
     flex-grow: 1;
+    margin-bottom: 0;
 }
 
 #subtitle {
@@ -53,7 +61,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-color: lime;
 }
 
 #button-paper {
@@ -72,17 +79,15 @@ body {
     align-items: center;
 }
 
-
-
 #results {
-    height: 175px;
+    height: 150px;
     width: 575px;
     text-align: center;
     align-content: center;
     border-style: solid;
-    background-color: mistyrose;
-
-
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #e1f7ff;
 }
 
 #footer {
